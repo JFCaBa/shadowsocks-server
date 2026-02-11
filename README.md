@@ -96,16 +96,6 @@ server {
     listen [::]:443 ssl http2;
     server_name your_domain.com www.your_domain.com;
 
-    # SSL certificate paths - adjust according to your certificate location
-    ssl_certificate /etc/letsencrypt/live/your_domain.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/your_domain.com/privkey.pem;
-
-    # SSL settings
-    ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384;
-    ssl_prefer_server_ciphers off;
-    ssl_session_cache shared:SSL:10m;
-
     # For Let's Encrypt ACME challenges
     location /.well-known/acme-challenge/ {
         root /var/www/certbot;

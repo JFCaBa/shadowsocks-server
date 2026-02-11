@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  shadowsocks:
+    build: .
+    container_name: shadowsocks-server
+    restart: unless-stopped
+    environment:
+      - SHADOWSOCKS_PASSWORD=${SHADOWSOCKS_PASSWORD:-your_password_here}
+      - SHADOWSOCKS_HOST=${SHADOWSOCKS_HOST:-skiprestriction.uk}
+      - SHADOWSOCKS_PATH=${SHADOWSOCKS_PATH:-/shadowsocks}
+      - SHADOWSOCKS_METHOD=${SHADOWSOCKS_METHOD:-aes-256-gcm}
+    ports:
+      - "8389:8389"
+    volumes:
+      - ./logs:/var/log/shadowsocks
+    networks:
+      - proxy-net
+
+networks:
+  proxy-net:
+    driver: bridge
